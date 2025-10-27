@@ -40,39 +40,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-            document.getElementById('metaphor-text').textContent = `"${data.text}"`;
-            document.getElementById('conceptual-metaphor').textContent = data.conceptual;
-            document.getElementById('rhetorical-effect').textContent = data.rhetorical;
-
-            // Show the sidebar
-            sidebar.classList.remove('sidebar-hidden');
-            
-            // Optional: Move main content (if you add the CSS for it)
-            // document.body.classList.add('main-content-shifted');
-        }
-    }
-
-    // Function to close the sidebar
-    function closeSidebar() {
-        sidebar.classList.add('sidebar-hidden');
-        // document.body.classList.remove('main-content-shifted');
-    }
-
-    // Add event listeners to all metaphor phrases
-    metaphorPhrases.forEach(phrase => {
-        phrase.addEventListener('click', () => {
-            const metaphorKey = phrase.getAttribute('data-metaphor');
-            openSidebar(metaphorKey);
-        });
-    });
-
-    // Add event listener to the close button
-    closeButton.addEventListener('click', closeSidebar);
-
-    // Close sidebar if the user presses the Escape key
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && !sidebar.classList.contains('sidebar-hidden')) {
-            closeSidebar();
-        }
-    });
-});
