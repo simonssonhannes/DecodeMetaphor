@@ -1,33 +1,45 @@
-// Data structure for the metaphor analysis
-const metaphorData = {
-    // Key matches the data-metaphor attribute in HTML
-    drunkna: {
-        text: "Sverige håller på att drunkna",
-        conceptual: "The Nation is a Body / Illness. The source domain is WATER / DROWNING, implying complete loss of control and imminent death.",
-        rhetorical: "This creates **Pathos** (emotion), evoking fear and crisis. It bypasses rational debate by presenting the situation as a life-or-death emergency."
-    },
-    livbat: {
-        text: "SD är det enda livbåten",
-        conceptual: "The Political Party is a Vessel / Savior. This extends the 'DROWNING' metaphor, making the party the only source of salvation.",
-        rhetorical: "This establishes a **Dichotomy** (us vs. them) where one party holds the sole key to survival, legitimizing extreme measures and delegitimizing all other parties."
-    },
-    krig: {
-        text: "förlorat kriget om landet",
-        conceptual: "Politics is War. This is a common conceptual metaphor where opposition is the enemy and policy is strategy.",
-        rhetorical: "It increases the sense of urgency and **stakes**, framing the political struggle not as an election, but as a violent conflict. This justifies aggression and uncompromising positions."
-    }
-};
-
+// small UI logic: show explanation in panel when a metaphor is clicked
 document.addEventListener('DOMContentLoaded', () => {
-    const metaphorPhrases = document.querySelectorAll('.metaphor-phrase');
-    const sidebar = document.getElementById('metaphor-sidebar');
-    const closeButton = document.getElementById('close-sidebar-btn');
+  const metaphors = document.querySelectorAll('.metaphor');
+  const panel = document.getElementById('explainPanel');
+  const text = document.getElementById('explainText');
+  const closeBtn = document.getElementById('closePanel');
+  const toggleAll = document.getElementById('toggleAll');
 
-    // Function to open the sidebar with content
-    function openSidebar(key) {
-        const data = metaphorData[key];
+  metaphors.forEach(m => {
+    m.addEventListener('click', () => {
+      const explanation = m.dataset.explanation || 'Ingen förklaring tillgänglig';
+      text.innerHTML = `<div style="margin-bottom:8px"><em>Markerad fras:</em> <strong>${m.textContent.trim()}</strong></div>` +
+                       `<div>${explanation}</div>`;
+      panel.classList.add('open');
 
-        if (data) {
+      // small flash effect
+      m.style.transition = 'box-shadow .18s ease, transform .12s ease';
+      m.style.boxShadow = '0 10px 20px rgba(11,90,167,0.12)';
+      setTimeout(()=> m.style.boxShadow = '', 420);
+    });
+  });
+
+  // close panel
+  closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+
+  // "show all explanations" toggles data-explanations inline
+  let allShown = false;
+  toggleAll.addEventListener('click', () => {
+    allShown = !allShown;
+    if (allShown) {
+      // show combined explanations in panel
+      const combined = Array.from(metaphors).map(m => `<p><strong>${m.textContent.trim()}</strong><br>${m.dataset.explanation}</p>`).join('');
+      text.innerHTML = combined || 'Inga metaforer funna';
+      panel.classList.add('open');
+      toggleAll.textContent = 'Dölj förklaringar';
+    } else {
+      text.textContent = 'Klicka på en markerad fras i inlägget för att se hur den används retoriskt.';
+      panel.classList.remove('open');
+      toggleAll.textContent = 'Visa förklaringar';
+    }
+  });
+});
             document.getElementById('metaphor-text').textContent = `"${data.text}"`;
             document.getElementById('conceptual-metaphor').textContent = data.conceptual;
             document.getElementById('rhetorical-effect').textContent = data.rhetorical;
