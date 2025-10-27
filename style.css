@@ -1,141 +1,112 @@
-/* Basic reset & vars */
-:root{
-  --bg:#f0f2f4;
-  --card:#ffffff;
-  --muted:#6b7280;
-  --accent:#0b5aa7;
-  --highlight:#fff4a3;
-  --panel:#f7fbff;
-  --shadow: 0 6px 20px rgba(15,23,42,0.08);
-  --border:#e6e9ed;
-  --font-sans: "Segoe UI", "Inter", Arial, sans-serif;
+/* Layout base */
+body {
+  font-family: system-ui, sans-serif;
+  background: #e7e7e7;
+  margin: 0;
+  color: #222;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:var(--font-sans);
-  font-size:15px;
-  color:#111827;
-  background:var(--bg);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+/* Topbar */
+.topbar {
+  background: #111;
+  color: #eee;
+  padding: 8px 0;
+}
+.topbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.logo { font-weight: bold; }
+.topnav a {
+  color: #eee;
+  margin-left: 16px;
+  text-decoration: none;
+}
+.topnav a:hover { text-decoration: underline; }
+
+/* Thread area */
+.thread-area {
+  position: relative;           /* makes panel align to this box */
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fafafa;
+  border: 1px solid #ccc;
+  padding: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-/* Topbar like forum */
-.topbar{
-  background:#fff;
-  border-bottom:1px solid var(--border);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+/* Posts */
+.post {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  padding: 12px 0;
 }
-.container{
-  width:min(1060px,95%);
-  margin:0 auto;
-  display:flex;
-  align-items:center;
-  gap:20px;
-  padding:12px 0;
+.usercard {
+  width: 120px;
+  text-align: center;
 }
-.logo{
-  font-weight:700;
-  color:var(--accent);
-  font-size:18px;
-  letter-spacing:0.4px;
+.avatar {
+  width: 48px; height: 48px;
+  margin: 0 auto 6px;
+  background: #ccc;
+  border-radius: 50%;
+  line-height: 48px;
+  font-weight: bold;
 }
-.topnav{margin-left:auto; display:flex; gap:14px; align-items:center}
-.topnav a{color:var(--muted); text-decoration:none; font-size:14px}
+.postbody { flex: 1; }
+.post-content { margin-top: 4px; line-height: 1.5; }
+.metaphor {
+  background: rgba(255,230,0,0.3);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background .15s ease;
+}
+.metaphor:hover { background: rgba(255,230,0,0.6); }
 
-/* Thread & posts */
-.thread-area{width:min(1060px,95%); margin:18px auto; position:relative}
-.thread-header{margin-bottom:12px}
-.thread-title{font-size:18px; margin:0 0 4px 0}
-.crumbs{color:var(--muted); font-size:13px}
-
-/* Each post */
-.post{
-  display:flex;
-  gap:18px;
-  background:var(--card);
-  border-radius:6px;
-  margin-bottom:12px;
-  padding:14px;
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
+.btn-small {
+  font-size: 12px;
+  padding: 3px 8px;
+  cursor: pointer;
 }
 
-/* left user column (narrow like Flashback) */
-.usercard{
-  width:140px;
-  flex-shrink:0;
-  text-align:center;
-  padding-right:6px;
-  border-right:1px solid var(--border);
+/* Explanation panel (inside main) */
+.explain-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.15);
+  transform: translateX(100%);
+  transition: transform .3s ease;
+  overflow-y: auto;
+  z-index: 10;
 }
-.avatar{
-  width:56px; height:56px; margin:6px auto 8px;
-  border-radius:6px; background:linear-gradient(180deg,#ddeffd,#bfe0ff);
-  display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--accent); font-size:20px;
-  border:1px solid rgba(11,90,167,0.12);
-}
-.username{font-weight:700; margin-bottom:4px}
-.rank{color:var(--muted); font-size:13px}
-.postdate{color:var(--muted); font-size:12px; margin-top:8px}
+.explain-panel.open { transform: translateX(0); }
 
-/* post body */
-.postbody{flex:1}
-.post-meta{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px}
-.post-number{color:var(--muted); font-weight:600}
-.btn-small{
-  background:transparent; border:1px solid var(--border); padding:6px 10px; border-radius:6px; font-size:13px; cursor:pointer;
+.panel-header, .panel-footer {
+  padding: 10px 14px;
+  background: #f3f3f3;
+  border-bottom: 1px solid #ddd;
 }
-.post-content p{margin:0; font-size:15px; line-height:1.7; color:#111827}
-.post-actions{margin-top:10px}
-.action{color:var(--accent); margin-right:12px; text-decoration:none; font-size:13px}
+.panel-body { padding: 12px 14px; }
 
-/* metaphor highlight like earlier but a bit more forum-style */
-.metaphor{
-  background: linear-gradient(180deg,#fff4a3,#fff0b0);
-  border-bottom:2px solid rgba(0,0,0,0.03);
-  padding:2px 5px; border-radius:4px; cursor:pointer;
-  transition:box-shadow .18s ease,transform .12s ease;
+.btn-close {
+  float: right;
+  border: none;
+  background: none;
+  font-size: 18px;
+  cursor: pointer;
 }
-.metaphor:hover{box-shadow:0 6px 14px rgba(11,90,167,0.08); transform:translateY(-1px)}
 
-/* sliding explanation panel on the right */
-.explain-panel{
-  position:fixed;
-  right:18px;
-  top:110px;
-  width:320px;
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:10px;
-  box-shadow:0 20px 40px rgba(2,6,23,0.12);
-  padding:12px;
-  transform:translateX(12px);
-  transition:transform .28s cubic-bezier(.2,.9,.2,1),opacity .22s ease;
-  opacity:0;
-  z-index:120;
-}
-.explain-panel.open{transform:translateX(0); opacity:1}
-.panel-header{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px}
-.panel-header strong{color:var(--accent)}
-.btn-close{
-  background:transparent; border:0; font-size:20px; line-height:1; cursor:pointer; color:var(--muted)
-}
-.panel-body{font-size:14px; color:#0f1724; min-height:80px}
-.panel-footer{margin-top:12px; font-size:13px; color:var(--muted)}
-
-/* footer */
-.page-footer{width:100%; padding:14px 0; text-align:center; color:var(--muted); font-size:13px; border-top:1px solid var(--border); margin-top:24px}
-
-/* responsive */
-@media (max-width:880px){
-  .post{flex-direction:column}
-  .usercard{width:100%; border-right:none; border-bottom:1px solid var(--border); padding-bottom:12px}
-  .explain-panel{display:none}
-}
-  .usercard{width:100%; border-right:none; border-bottom:1px solid var(--border); padding-bottom:12px}
-  .explain-panel{display:none}
+/* Footer */
+.page-footer {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-size: 14px;
 }
