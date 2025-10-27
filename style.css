@@ -1,138 +1,64 @@
-/* Basic reset & vars */
-:root{
-  --bg:#f0f2f4;
-  --card:#ffffff;
-  --muted:#6b7280;
-  --accent:#0b5aa7;
-  --highlight:#fff4a3;
-  --panel:#f7fbff;
-  --shadow: 0 6px 20px rgba(15,23,42,0.08);
-  --border:#e6e9ed;
-  --font-sans: "Segoe UI", "Inter", Arial, sans-serif;
+/* Base Style for Metaphor Phrases */
+.metaphor-phrase {
+    color: #cc0000; /* Flashback's red color */
+    border-bottom: 2px dashed #cc0000;
+    cursor: pointer;
+    font-weight: 600; /* Makes them stand out */
+    transition: background-color 0.2s;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:var(--font-sans);
-  font-size:15px;
-  color:#111827;
-  background:var(--bg);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+.metaphor-phrase:hover {
+    background-color: rgba(204, 0, 0, 0.1);
+    border-bottom: 2px solid #cc0000;
 }
 
-/* Topbar like forum */
-.topbar{
-  background:#fff;
-  border-bottom:1px solid var(--border);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
-}
-.container{
-  width:min(1060px,95%);
-  margin:0 auto;
-  display:flex;
-  align-items:center;
-  gap:20px;
-  padding:12px 0;
-}
-.logo{
-  font-weight:700;
-  color:var(--accent);
-  font-size:18px;
-  letter-spacing:0.4px;
-}
-.topnav{margin-left:auto; display:flex; gap:14px; align-items:center}
-.topnav a{color:var(--muted); text-decoration:none; font-size:14px}
-
-/* Thread & posts */
-.thread-area{width:min(1060px,95%); margin:18px auto; position:relative}
-.thread-header{margin-bottom:12px}
-.thread-title{font-size:18px; margin:0 0 4px 0}
-.crumbs{color:var(--muted); font-size:13px}
-
-/* Each post */
-.post{
-  display:flex;
-  gap:18px;
-  background:var(--card);
-  border-radius:6px;
-  margin-bottom:12px;
-  padding:14px;
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
+/* Sidebar Styling */
+#metaphor-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 350px; /* Width of the sidebar */
+    height: 100%;
+    background-color: #f0f0f0; /* Light background */
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
 }
 
-/* left user column (narrow like Flashback) */
-.usercard{
-  width:140px;
-  flex-shrink:0;
-  text-align:center;
-  padding-right:6px;
-  border-right:1px solid var(--border);
+.sidebar-hidden {
+    /* Moves the sidebar off-screen */
+    transform: translateX(100%);
 }
-.avatar{
-  width:56px; height:56px; margin:6px auto 8px;
-  border-radius:6px; background:linear-gradient(180deg,#ddeffd,#bfe0ff);
-  display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--accent); font-size:20px;
-  border:1px solid rgba(11,90,167,0.12);
-}
-.username{font-weight:700; margin-bottom:4px}
-.rank{color:var(--muted); font-size:13px}
-.postdate{color:var(--muted); font-size:12px; margin-top:8px}
 
-/* post body */
-.postbody{flex:1}
-.post-meta{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px}
-.post-number{color:var(--muted); font-weight:600}
-.btn-small{
-  background:transparent; border:1px solid var(--border); padding:6px 10px; border-radius:6px; font-size:13px; cursor:pointer;
+#close-sidebar-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
 }
-.post-content p{margin:0; font-size:15px; line-height:1.7; color:#111827}
-.post-actions{margin-top:10px}
-.action{color:var(--accent); margin-right:12px; text-decoration:none; font-size:13px}
 
-/* metaphor highlight like earlier but a bit more forum-style */
-.metaphor{
-  background: linear-gradient(180deg,#fff4a3,#fff0b0);
-  border-bottom:2px solid rgba(0,0,0,0.03);
-  padding:2px 5px; border-radius:4px; cursor:pointer;
-  transition:box-shadow .18s ease,transform .12s ease;
+#metaphor-sidebar h3 {
+    border-bottom: 2px solid #cc0000;
+    padding-bottom: 5px;
+    color: #cc0000;
 }
-.metaphor:hover{box-shadow:0 6px 14px rgba(11,90,167,0.08); transform:translateY(-1px)}
 
-/* sliding explanation panel on the right */
-.explain-panel{
-  position:fixed;
-  right:18px;
-  top:110px;
-  width:320px;
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:10px;
-  box-shadow:0 20px 40px rgba(2,6,23,0.12);
-  padding:12px;
-  transform:translateX(12px);
-  transition:transform .28s cubic-bezier(.2,.9,.2,1),opacity .22s ease;
-  opacity:0;
-  z-index:120;
+#metaphor-sidebar textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 10px;
+    box-sizing: border-box;
 }
-.explain-panel.open{transform:translateX(0); opacity:1}
-.panel-header{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px}
-.panel-header strong{color:var(--accent)}
-.btn-close{
-  background:transparent; border:0; font-size:20px; line-height:1; cursor:pointer; color:var(--muted)
-}
-.panel-body{font-size:14px; color:#0f1724; min-height:80px}
-.panel-footer{margin-top:12px; font-size:13px; color:var(--muted)}
 
-/* footer */
-.page-footer{width:100%; padding:14px 0; text-align:center; color:var(--muted); font-size:13px; border-top:1px solid var(--border); margin-top:24px}
-
-/* responsive */
-@media (max-width:880px){
-  .post{flex-direction:column}
-  .usercard{width:100%; border-right:none; border-bottom:1px solid var(--border); padding-bottom:12px}
-  .explain-panel{display:none}
-}
+/* Optional: Pushes the main content to the left when the sidebar is open */
+/* You'll need to add a class to the body when the sidebar is visible */
+/* .main-content-shifted { margin-right: 350px; } */
