@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -64,7 +64,7 @@
       </section>
     </article>
 
-    <!-- Post 2 (example reply) -->
+    <!-- Post 2 -->
     <article class="post">
       <aside class="usercard">
         <div class="avatar">B</div>
@@ -82,7 +82,8 @@
 
         <div class="post-content">
           <p>
-            Jag håller inte med. Att kalla det för "drunkna" gör diskussionen svårare — det är en <em>överdriven</em> bild.
+            Jag håller inte med. Att kalla det för "drunkna" gör diskussionen svårare —
+            det är en <em>överdriven</em> bild.
           </p>
         </div>
 
@@ -92,23 +93,22 @@
         </div>
       </section>
     </article>
+
+    <!-- Sliding explanation panel INSIDE main -->
+    <aside id="explainPanel" class="explain-panel">
+      <div class="panel-header">
+        <strong>Metaphor Decoded</strong>
+        <button id="closePanel" class="btn-close" title="Close">×</button>
+      </div>
+      <div id="explainText" class="panel-body">
+        Klicka på en markerad fras i inlägget för att se hur den används retoriskt.
+      </div>
+      <div class="panel-footer">
+        <strong>Reflektionsfråga</strong>
+        <p>Hur förändras din syn på inlägget efter att du sett metaforernas funktion?</p>
+      </div>
+    </aside>
   </main>
-
-  <!-- Sliding explanation panel -->
-  <aside id="explainPanel" class="explain-panel">
-    <div class="panel-header">
-      <strong>Metaphor Decoded</strong>
-      <button id="closePanel" class="btn-close" title="Close">×</button>
-    </div>
-    <div id="explainText" class="panel-body">
-      Klicka på en markerad fras i inlägget för att se hur den används retoriskt.
-    </div>
-
-    <div class="panel-footer">
-      <strong>Reflektionsfråga</strong>
-      <p>Hur förändras din syn på inlägget efter att du sett metaforernas funktion?</p>
-    </div>
-  </aside>
 
   <footer class="page-footer">
     Prototype for TIA550 — Decode the Metaphor
@@ -117,4 +117,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
