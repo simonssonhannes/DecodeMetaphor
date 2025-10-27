@@ -136,3 +136,6 @@ body{
   .usercard{width:100%; border-right:none; border-bottom:1px solid var(--border); padding-bottom:12px}
   .explain-panel{display:none}
 }
+  .usercard{width:100%; border-right:none; border-bottom:1px solid var(--border); padding-bottom:12px}
+  .explain-panel{display:none}
+}
