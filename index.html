@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="sv">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hiddenscript - DecodeMetaphor</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Decode the Metaphor — Forum Demo</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="topbar">
     <div class="container">
-      <div class="logo">Hiddenscript</div>
+      <div class="logo">Flashback-style Demo</div>
       <nav class="topnav">
-        <a href="#">Hem</a>
         <a href="#">Forum</a>
+        <a href="#">Nya ämnen</a>
         <a href="#">Sök</a>
-        <button id="toggle-theme">Mörkt läge</button>
-        <button id="toggle-all">Visa alla metaforer</button>
       </nav>
     </div>
   </header>
@@ -23,81 +21,103 @@
   <main class="container thread-area">
     <div class="thread-header">
       <h1 class="thread-title">[Politik] Diskussion: Inläggsexempel</h1>
-      <div class="crumbs">Hiddenscript &gt; Politik &gt; Tråd</div>
+      <div class="crumbs">Flashback &gt; Politik &gt; Tråd</div>
     </div>
 
     <!-- Post 1 -->
     <article class="post">
       <aside class="usercard">
-        <div class="username">Anonym123</div>
-        <div class="rank">Medlem • 345 inlägg</div>
-        <div class="postdate">2025-10-20 14:02</div>
+        <div class="avatar">A</div>
+        <div class="userinfo">
+          <div class="username">Anonym123</div>
+          <div class="rank">Medlem • 345 inlägg</div>
+          <div class="postdate">2025-10-20 14:02</div>
+        </div>
       </aside>
+
       <section class="postbody">
         <div class="post-meta">
           <span class="post-number">#1</span>
+          <button id="toggleAll" class="btn-small">Visa förklaringar</button>
         </div>
+
         <div class="post-content">
           <p>
-            Sverige håller på att <span class="metaphor" data-explanation="Crisis metaphor: frames Sweden as overwhelmed and endangered, evoking fear and urgency.">drunkna</span> i invandring, och SD är det enda <span class="metaphor" data-explanation="Heroic metaphor: portrays SD as rescuers who can 'save' the nation, legitimizing their political stance.">livbåten</span>. Om vi inte agerar nu, så har vi förlorat <span class="metaphor" data-explanation="Battle metaphor: constructs politics as war, encouraging conflict-based thinking rather than dialogue.">kriget</span> om landet.
+            <span class="metaphor" data-explanation="Crisis metaphor: frames Sweden as overwhelmed and endangered, evoking fear and urgency.">
+              Sverige håller på att drunkna
+            </span>
+            i invandring, och
+            <span class="metaphor" data-explanation="Heroic metaphor: portrays SD as rescuers who can 'save' the nation, legitimizing their political stance.">
+              SD är det enda livbåten
+            </span>.
+            Om vi inte agerar nu,
+            <span class="metaphor" data-explanation="Battle metaphor: constructs politics as war, encouraging conflict-based thinking rather than dialogue.">
+              så har vi förlorat kriget om landet
+            </span>.
           </p>
         </div>
+
         <div class="post-actions">
-          <button class="action cite-btn">Citera</button>
-          <button class="action reply-btn">Svara</button>
+          <a class="action">Cite</a>
+          <a class="action">Svara</a>
         </div>
       </section>
     </article>
 
-    <!-- Post 2 -->
+    <!-- Post 2 (example reply) -->
     <article class="post">
       <aside class="usercard">
-        <div class="username">Röstvän</div>
-        <div class="rank">Gäst • 12 inlägg</div>
-        <div class="postdate">2025-10-20 14:15</div>
+        <div class="avatar">B</div>
+        <div class="userinfo">
+          <div class="username">Röstvän</div>
+          <div class="rank">Gäst • 12 inlägg</div>
+          <div class="postdate">2025-10-20 14:15</div>
+        </div>
       </aside>
+
       <section class="postbody">
         <div class="post-meta">
           <span class="post-number">#2</span>
         </div>
+
         <div class="post-content">
           <p>
-            Jag håller inte med. Att kalla det för <span class="metaphor" data-explanation="Crisis metaphor: exaggerates the issue to provoke reaction, polarizing the debate.">"drunkna"</span> gör diskussionen svårare — det är en <em>överdriven</em> bild.
+            Jag håller inte med. Att kalla det för "drunkna" gör diskussionen svårare — det är en <em>överdriven</em> bild.
           </p>
         </div>
+
         <div class="post-actions">
-          <button class="action cite-btn">Citera</button>
-          <button class="action reply-btn">Svara</button>
+          <a class="action">Cite</a>
+          <a class="action">Svara</a>
         </div>
       </section>
     </article>
-
-    <!-- Reply Form -->
-    <form id="reply-form" class="reply-form" style="display: none;">
-      <textarea id="reply-area" rows="5" placeholder="Skriv ditt svar..."></textarea>
-      <button type="submit">Skicka</button>
-    </form>
-
-    <!-- Reflection Prompt -->
-    <div class="prompt">
-      <p>Hur förändras din syn på inlägget efter att du sett metaforernas funktion?</p>
-      <textarea id="reflection-input" rows="3" placeholder="Skriv din reflektion..."></textarea>
-      <button id="save-reflection">Spara reflektion</button>
-    </div>
   </main>
 
-  <!-- Explanation Panel (Fixed, outside main) -->
-  <aside id="explain-panel" class="explain-panel">
+  <!-- Sliding explanation panel -->
+  <aside id="explainPanel" class="explain-panel">
     <div class="panel-header">
-      <strong>Metaforanalys</strong>
-      <button id="close-panel" class="btn-close" title="Stäng">×</button>
+      <strong>Metaphor Decoded</strong>
+      <button id="closePanel" class="btn-close" title="Close">×</button>
     </div>
-    <div id="explain-text" class="panel-body"></div>
+    <div id="explainText" class="panel-body">
+      Klicka på en markerad fras i inlägget för att se hur den används retoriskt.
+    </div>
+
+    <div class="panel-footer">
+      <strong>Reflektionsfråga</strong>
+      <p>Hur förändras din syn på inlägget efter att du sett metaforernas funktion?</p>
+    </div>
   </aside>
 
   <footer class="page-footer">
-    Prototype for TIA550 — Hiddenscript: Decode the Metaphor
+    Prototype for TIA550 — Decode the Metaphor
   </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
 
   <script src="script.js"></script>
 </body>
